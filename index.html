@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SAS Classes</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#17233d}
+header{background:#062b5c;color:white;padding:18px 6%;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:5}
+.logo{font-size:28px;font-weight:800}.logo span{color:#ffd21c}.nav a{color:#fff;text-decoration:none;margin-left:20px}
+.hero{background:linear-gradient(135deg,#062b5c,#0b63c7);color:#fff;padding:55px 6%;display:flex;gap:30px;align-items:center}
+.hero h1{font-size:42px;margin:0 0 12px}.hero p{font-size:18px}.btn{display:inline-block;background:#ffd21c;color:#062b5c;padding:13px 22px;border-radius:9px;text-decoration:none;font-weight:bold;margin-top:12px}
+.container{max-width:1150px;margin:auto;padding:35px 20px}.section-title{font-size:28px;margin-bottom:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+.card{background:white;border-radius:14px;padding:22px;box-shadow:0 4px 18px #00000012;border:1px solid #e7edf5}
+.card h3{margin:8px 0}.icon{font-size:32px}.card button{border:0;background:#0866d8;color:white;padding:10px 15px;border-radius:7px;cursor:pointer}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}.tabs button{padding:10px 15px;border:1px solid #ccd7e6;background:white;border-radius:8px;cursor:pointer}.tabs button.active{background:#0866d8;color:#fff}
+.hidden{display:none}.course{display:flex;justify-content:space-between;align-items:center;gap:15px}
+footer{background:#062b5c;color:#fff;text-align:center;padding:25px;margin-top:30px}
+.modal{display:none;position:fixed;inset:0;background:#0008;align-items:center;justify-content:center;z-index:10}.modal>div{background:white;padding:28px;border-radius:14px;width:min(500px,90%)}.close{float:right;cursor:pointer;font-size:22px}
+@media(max-width:700px){.nav{display:none}.hero{padding:35px 20px}.hero h1{font-size:32px}}
+</style>
+</head>
+<body>
+<header><div class="logo">SAS <span>CLASSES</span></div><nav class="nav"><a href="#home">Home</a><a href="#classes">Classes</a><a href="#notes">Notes</a><a href="#tests">Tests</a><a href="#profile">Profile</a></nav></header>
+
+<section class="hero" id="home">
+<div><h1>सीखो • समझो • सफल बनो</h1><p>SAS Classes — आपकी पढ़ाई के लिए Classes, Video Lectures, PDF Notes और Online Tests एक ही जगह।</p><a class="btn" href="#classes">Classes देखें</a></div>
+</section>
+
+<main class="container">
+<section id="classes"><h2 class="section-title">📚 All Classes</h2>
+<div class="tabs">
+<button class="active" onclick="filterClass('all',this)">All</button><button onclick="filterClass('school',this)">School</button><button onclick="filterClass('railway',this)">Railway</button>
+</div>
+<div class="grid">
+<div class="card cls school"><div class="icon">🧪</div><h3>Class 1</h3><p>Science • Chemistry</p><button onclick="openClass('Class 1')">Open Class</button></div>
+<div class="card cls school"><div class="icon">🔬</div><h3>Class 2</h3><p>Science • Chemistry</p><button onclick="openClass('Class 2')">Open Class</button></div>
+<div class="card cls school"><div class="icon">📖</div><h3>Class 3</h3><p>Science • Chemistry</p><button onclick="openClass('Class 3')">Open Class</button></div>
+<div class="card cls school"><div class="icon">📐</div><h3>Class 4</h3><p>Science • Maths</p><button onclick="openClass('Class 4')">Open Class</button></div>
+<div class="card cls school"><div class="icon">📘</div><h3>Class 5</h3><p>All Subjects</p><button onclick="openClass('Class 5')">Open Class</button></div>
+<div class="card cls railway"><div class="icon">🚆</div><h3>Railway</h3><p>NTPC • ALP • Technician</p><button onclick="openClass('Railway')">Open Course</button></div>
+</div></section>
+
+<section id="notes"><h2 class="section-title">📄 Latest Notes</h2><div class="grid">
+<div class="card"><h3>पदार्थ एवं उसका वर्गीकरण</h3><p>Chemistry Notes • PDF</p><button onclick="notice('PDF Notes')">View Notes</button></div>
+<div class="card"><h3>Blood Relation</h3><p>Practice Questions • PDF</p><button onclick="notice('Blood Relation PDF')">View Notes</button></div>
+<div class="card"><h3>प्राचीन भारत</h3><p>History Notes • PDF</p><button onclick="notice('History PDF')">View Notes</button></div>
+</div></section>
+
+<section id="tests"><h2 class="section-title">📝 Test Series</h2><div class="grid">
+<div class="card course"><div><h3>Science Chapter Test</h3><p>20 Questions</p></div><button onclick="startTest()">Start</button></div>
+<div class="card course"><div><h3>Maths Practice Test</h3><p>20 Questions</p></div><button onclick="startTest()">Start</button></div>
+<div class="card course"><div><h3>Railway Mock Test</h3><p>50 Questions</p></div><button onclick="startTest()">Start</button></div>
+</div></section>
+
+<section id="profile"><h2 class="section-title">👤 Student Profile</h2><div class="card"><h3>Login / Register</h3><p>अपना course, notes और test progress देखने के लिए login करें।</p><button onclick="notice('Login')">Login</button></div></section>
+</main>
+<footer>© 2026 SAS Classes • Learn • Practice • Success</footer>
+
+<div class="modal" id="modal"><div><span class="close" onclick="closeModal()">×</span><h2 id="modalTitle">SAS Classes</h2><p id="modalText"></p></div></div>
+<script>
+function filterClass(type,el){document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));el.classList.add('active');document.querySelectorAll('.cls').forEach(x=>x.classList.toggle('hidden',type!='all'&&!x.classList.contains(type)))}
+function openClass(n){show(n,'इस section में Chapters, Video Lectures, PDF Notes और Tests जोड़े जा सकते हैं।')}
+function notice(n){show(n,'यह demo website है। असली PDF/Video/Login system जोड़ने के लिए आपका content और hosting/backend connect करना होगा।')}
+function startTest(){show('Online Test','Test module तैयार है। यहाँ वास्तविक MCQ questions और result system जोड़ा जा सकता है।')}
+function show(t,m){document.getElementById('modalTitle').innerText=t;document.getElementById('modalText').innerText=m;document.getElementById('modal').style.display='flex'}
+function closeModal(){document.getElementById('modal').style.display='none'}
+</script>
+</body>
+</html>
