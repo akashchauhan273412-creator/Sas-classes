@@ -66,34 +66,84 @@ function notice(n){show(n,'यह demo website है। असली PDF/Video/
 function startTest(){show('Online Test','Test module तैयार है। यहाँ वास्तविक MCQ questions और result system जोड़ा जा सकता है।')}
 function show(t,m){document.getElementById('modalTitle').innerText=t;document.getElementById('modalText').innerText=m;document.getElementById('modal').style.display='flex'}
 function closeModal(){document.getElementById('modal').style.display='none'}
-</scrip</script<script>
+</scrip<<div class="modal" id="modal">
+  <div class="box">
+    <span class="close" onclick="closeModal()">×</span>
+    <h2 id="modalTitle">Student Login</h2>
+
+    <input type="email" id="loginEmail" placeholder="Email">
+    <input type="password" id="loginPassword" placeholder="Password">
+
+    <button class="btn" onclick="loginStudent()">Login</button>
+
+    <p style="margin-top:15px">
+      New Student?
+      <button onclick="registerStudent()" style="border:0;background:none;color:#0871d8">
+        Register
+      </button>
+    </p>
+
+    <p id="loginMessage"></p>
+  </div>
+</div>
+
+<script>
 
 function filterClass(type,el){
-  // jo pehle se hai
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+  if(el) el.classList.add('active');
+
+  document.querySelectorAll('.cls').forEach(c=>{
+    c.style.display =
+      type === 'all' || c.classList.contains(type)
+      ? 'block'
+      : 'none';
+  });
 }
 
 function openClass(n){
-  // jo pehle se hai
+  show(n,'यह Class जल्द ही उपलब्ध होगी।');
 }
 
 function notice(n){
-  // jo pehle se hai
+  show(n,'यह सुविधा जल्द ही उपलब्ध होगी।');
 }
 
 function startTest(){
-  // jo pehle se hai
+  show('Online Test','Test section जल्द ही उपलब्ध होगा।');
 }
 
 function show(t,m){
-  // jo pehle se hai
+  document.getElementById('modalTitle').innerText=t;
+  document.getElementById('loginMessage').innerText=m;
+  document.getElementById('modal').style.display='flex';
 }
 
 function closeModal(){
-  // jo pehle se hai
+  document.getElementById('modal').style.display='none';
 }
 
+function loginStudent(){
+  const email=document.getElementById('loginEmail').value;
+  const password=document.getElementById('loginPassword').value;
 
-/* LOGIN CODE YAHAN PASTE HOGA */
+  if(!email || !password){
+    document.getElementById('loginMessage').innerText=
+      'Email और Password भरें।';
+    return;
+  }
+
+  document.getElementById('loginMessage').innerText=
+    'Login system तैयार है। Supabase Auth connect करना बाकी है।';
+}
+
+function registerStudent(){
+  document.getElementById('modalTitle').innerText='Student Register';
+  document.getElementById('loginMessage').innerText=
+    'Registration जल्द ही शुरू होगा।';
+}
+
+</script>
 
 
 </script>>
